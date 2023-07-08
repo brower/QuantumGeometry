@@ -34,8 +34,8 @@
 using namespace std;
 
 #define TWOPI  6.283185307179586
-#define Lx 2
-#define Ly 2
+#define Lx 3
+#define Ly 3
 #define Three 3
 #define N  Lx*Ly   //  Lx * Ly
 #define Debug 0
@@ -110,10 +110,9 @@ int main()
   std::filesystem::create_directory(dir_corr_ezez);
 
   int s[Ly][Lx];
-  double beta; //  Triagular critical point β_crit = ln(3)/4 =  0.274653
-  beta = log(3.0)/4.0 + 0.02;
-  // beta = 0.02; // + 0.02
-  const double Kx = 0.4, Ky=1.5, Kz=1.1;
+  double beta = log(3.0)/4.0 - 0.2; //  Triagular critical beta = ln(3)/4 = 0.274653
+  // const double Kx = 1.0, Ky=1.0, Kz=1.0;
+  const double Kx = 1.2, Ky=1.5, Kz=0.3;
 
   double K[2*Three];
   K[0] = Kx; K[1] = Ky; K[2] = Kz;
@@ -336,9 +335,9 @@ void getCorrEEs( double exex[Ly][Lx],
           const int ez = s[y2][x2]*s[y2p1][x2p1];
           //
           const int y2py1 = (y2+y1)%Ly;
-          const int x2px1 = (x2+y1)%Lx;
+          const int x2px1 = (x2+x1)%Lx;
           const int y2py1p1 = (y2+y1+1)%Ly;
-          const int x2px1p1 = (x2+y1+1)%Lx;
+          const int x2px1p1 = (x2+x1+1)%Lx;
           const int ex1 = s[y2py1][x2px1]*s[y2py1][x2px1p1];
           const int ey1 = s[y2py1][x2px1]*s[y2py1p1][x2px1];
           const int ez1 = s[y2py1][x2px1]*s[y2py1p1][x2px1p1];
